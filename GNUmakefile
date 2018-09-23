@@ -11,4 +11,4 @@ ping:
 
 setup-roles:
 	mkdir -p roles
-	ansible-galaxy install yasuhiroabe.myfavorite-setting
+	ansible-galaxy install YasuhiroABE.myfavorite-setting
