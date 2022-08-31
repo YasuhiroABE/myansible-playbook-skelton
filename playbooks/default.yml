@@ -1,0 +1,19 @@
+---
+- hosts: all
+  vars:
+    mfts_hostname: "myhost"
+    mfts_sshd_listen_ipaddr: 192.168.1.1
+    mfts_sysctl_rules:
+      - { name: net.ipv4.ip_forward, value: 0 }
+    mfts_additional_packages:
+      - iptables-persistent
+    mfts_setup_directory:
+      - { path: "/etc/netplan/00-installer-config.yaml", state: "absent", owner: "root", group: "root", mode: "0750" }
+    mfts_copy_files:
+      ## netplan
+      - { src: "{{ inventory_dir }}/files/netplan/01-enp1s0.yaml", dest: "/etc/netplan/01-enp1s0.yaml", owner: "root", group: "root", mode: "0644" }
+    mfts_command_after_copyfiles:
+      - { command: "netplan apply", become: "yes" }
+  roles:
+    - YasuhiroABE.myfavorite-setting
+
