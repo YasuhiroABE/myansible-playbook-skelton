@@ -1,11 +1,9 @@
 
 .PHONY: all ping
 
-## default task
 all:
 	ansible-playbook site.yml
 
-## checking entries in the ./hosts file
 ping:
 	ansible all -m ping
 
